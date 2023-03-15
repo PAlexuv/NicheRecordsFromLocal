@@ -1,0 +1,17 @@
+{
+  "registerValidData":
+[
+    {
+      "numeField": "testNume",
+      "prenumeField": "testPrenume",
+      "emailField": "oki4@ema.com",
+      "parolaField": "interesatDe",
+      "confirmareParolaField": "interesatDe",
+      "telefonField": "0745789874",
+      "adresaField": "oras test",
+      "codPostalField": "700889",
+      "judetSelect": "Arad",
+      "orasSelect": "Agrisu Mic"
+    }
+]
+}

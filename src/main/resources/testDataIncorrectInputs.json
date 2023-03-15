@@ -1,0 +1,43 @@
+{
+  "register form InvalidData":
+  [
+    {
+      "numeField": " ",
+      "prenumeField": "testPrenume",
+      "emailField": "",
+      "parolaField": "interesatDe",
+      "confirmareParolaField": "interesatDe",
+      "telefonField": "0745789874",
+      "adresaField": "oras test",
+      "codPostalField": "700889",
+      "judetSelect": "Arad",
+      "orasSelect": "Agrisu Mic"
+    },
+
+    {
+    "numeField": "testNume",
+    "prenumeField": "",
+    "emailField": "oki3a@ema.com",
+    "parolaField": "interesatDe",
+    "confirmareParolaField": "interesatDe",
+    "telefonField": "",
+    "adresaField": "oras test",
+    "codPostalField": "700889",
+    "judetSelect": "Arad",
+    "orasSelect": "Agrisu Mic"
+  },
+
+    {
+      "numeField": "testNume",
+      "prenumeField": "testPrenume",
+      "emailField": "oki3@ema.com",
+      "parolaField": "interesatDe",
+      "confirmareParolaField": "interesatDe",
+      "telefonField": "0745789874",
+      "adresaField": "oras test",
+      "codPostalField": "700889",
+      "judetSelect": "Arad",
+      "orasSelect": "Agrisu Mic"
+    }
+  ]
+}
