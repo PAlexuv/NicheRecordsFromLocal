@@ -1,0 +1,21 @@
+{
+  "registerValidData":
+
+  [
+
+    {
+      "numeField": "Alex",
+      "prenumeField": "Pascal",
+      "emailField": "alexandrupascal@yahoo.com",
+      "parolaField": "Parola",
+      "confirmareParolaField": "Parola",
+      "telefonField": "0742755577",
+      "judetSelect": "Iasi",
+      "orasSelect": "Iasi",
+      "adresaField": "Pacurari 158",
+      "codPostalField": "700889"
+    }
+
+  ]
+
+}

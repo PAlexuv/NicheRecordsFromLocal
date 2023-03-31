@@ -2,11 +2,10 @@ package NicheRecords.PageObjects.headerNR;
 
 import NicheRecords.PageObjects.BasePoPageNR;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-
-import static org.junit.Assert.assertEquals;
 
 public class utilizatorNouPo extends BasePoPageNR {
+
+    private By headText = By.xpath("//h2[normalize-space()='Inregistrare']");
 
     private By nume = By.id("register_last_name");
     private By prenume = By.id("register_first_name");
@@ -15,8 +14,8 @@ public class utilizatorNouPo extends BasePoPageNR {
     private By confirmParola = By.id("register_password_confirmation");
     private By telefon = By.id("register_phone");
 
-    private By selectJudet = By.id("register_address_state");
-    private By selectOras = By.id("register_address_city");
+    private By judetSelect = By.id("register_address_state");
+    private By orasSelect = By.id("register_address_city");
 
     private By adresa = By.id("register_address_address");
     private By codPostal = By.id("register_address_postal_code");
@@ -27,7 +26,8 @@ public class utilizatorNouPo extends BasePoPageNR {
     private By errorRegisterText = By.cssSelector(".form-has-error");
 
     public utilizatorNouPo inputRegisterCredentials(String numeText, String prenumeText, String emailText, String parolaText, String confirmParolaText,
-                                                    String telefonText, String adresaText, String codPostalText, String judet, String oras) {
+                                                    String telefonText, String judet, String oras ,String adresaText, String codPostalText) {
+
         setText(nume, numeText);
         setText(prenume, prenumeText);
         setText(email, emailText);
@@ -37,14 +37,21 @@ public class utilizatorNouPo extends BasePoPageNR {
         setText(adresa, adresaText);
         setText(codPostal, codPostalText);
 
+//click
+        clickElements(judet, oras);
+
+        return this;
+    }
+
+    public utilizatorNouPo inputRegisterJudetLocalitate(String judet, String oras){
         clickElements(judet, oras);
         return this;
     }
 
     public utilizatorNouPo clickElements(String judet, String oras) {
         scrollElementIntoView(inregistrareButton);
-        selectDropdownByVisibleText(selectJudet, judet);
-        selectDropdownByVisibleText(selectOras, oras);
+        selectDropdownByVisibleText(judetSelect, judet);
+        selectDropdownByVisibleText(orasSelect, oras);
         click(checkboxAbonare);
         click(checkboxTermeni);
         click(inregistrareButton);
@@ -56,11 +63,17 @@ public class utilizatorNouPo extends BasePoPageNR {
         System.out.println(getTextByText(confirmRegisterText));
         return getTextByText(confirmRegisterText);
     }
+
     public String getErrorRegisterMessage() {
         System.out.println(getTextByText(errorRegisterText));
         return getTextByText(errorRegisterText);
     }
 
+    public String getHeadText() {
+        System.out.println(getTextByText(headText));
+        return driver.findElement(headText).getText();
+    }
+}
     //de vazut cum se poate face
 //    public void assertIF() {
 //        String errorRegistration = getErrorRegisterMessage();
@@ -73,7 +86,7 @@ public class utilizatorNouPo extends BasePoPageNR {
 //            assertEquals(errorRegistration, "Inregistrarea nu s-a procesat!");
 //    }
 
-}
+
 //    public utilizatorNouPo selectJudetOras(String judet, String oras) {
 //        selectDropdownByValue(selectJudet, judet);
 //        selectDropdownByValue(selectOras, oras);

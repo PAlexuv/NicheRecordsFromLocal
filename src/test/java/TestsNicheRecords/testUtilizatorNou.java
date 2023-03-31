@@ -13,18 +13,17 @@ public class testUtilizatorNou extends BaseTestsNR {
         baseHeader.clickUtilizatorNou();
     }
 
+    @Test(description = "Verify that user is not able to create an account using invalid inputs",
+          dataProviderClass = DataProviderMethod.class, dataProvider = "dpRegInvalidInput")
+    public void testInvalidData(String invalidData) {
 
-//    @Test(description = "Verify that user is not able to create an account using invalid inputs",
-//          dataProviderClass = DataProviderMethod.class, dataProvider = "dpRegInvalidInput")
-//    public void testInvalidData(String invalidData) {
-//
-//        String[] regInvalidInput = invalidData.split(",");
-//        utilizatorNou.inputRegisterCredentials(regInvalidInput[0], regInvalidInput[1], regInvalidInput[2], regInvalidInput[3]
-//                , regInvalidInput[4], regInvalidInput[5], regInvalidInput[6], regInvalidInput[7], regInvalidInput[8], regInvalidInput[9]);
-//
-//        String errorMessage = utilizatorNou.getErrorRegisterMessage();
-//        assertEquals(errorMessage, "Inregistrarea nu s-a procesat! Te rugam sa completezi toate campurile obligatorii.");
-//    }
+        String[] regInvalidInput = invalidData.split(",");
+        utilizatorNou.inputRegisterCredentials(regInvalidInput[0], regInvalidInput[1], regInvalidInput[2], regInvalidInput[3]
+                , regInvalidInput[4], regInvalidInput[5], regInvalidInput[6], regInvalidInput[7], regInvalidInput[8], regInvalidInput[9]);
+
+        String errorMessage = utilizatorNou.getErrorRegisterMessage();
+        assertEquals(errorMessage, "Inregistrarea nu s-a procesat! Te rugam sa completezi toate campurile obligatorii.");
+    }
 
 
     @Test(description = "Verify that user is able to create an account using valid inputs",
@@ -39,6 +38,10 @@ public class testUtilizatorNou extends BaseTestsNR {
         assertEquals(confirmRegistrationMessage, "LOGOUT");
     }
 
-
+    @Test(description = "test register judet localitate", dataProviderClass = DataProviderMethod.class, dataProvider = "dpRegJudetOrasEl")
+    public void testJudetLocalitate(String validDataLoc) {
+        String[] regValidInput = validDataLoc.split(",");
+        utilizatorNou.inputRegisterJudetLocalitate(regValidInput[0], regValidInput[1]);
+    }
 
 }

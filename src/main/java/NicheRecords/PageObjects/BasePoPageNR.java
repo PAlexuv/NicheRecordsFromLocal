@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
@@ -27,14 +28,15 @@ public class BasePoPageNR {
 
     public static String browser;
     public static String baseUrl;
-    public Properties properties;
+    public static Properties properties;
+    public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     public final String SCREENSHOT_PATH = "C:\\Automation\\IntelliJProjects\\NicheRecords\\ScreenshotsNR";
-    public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     //*************** BASE START ****************//loadProp, OpenBrowser, gotoHomepage with assertion that we're not hacked
 
     public void loadProperties() {
+
         FileInputStream fis = null;
         try {
             properties = new Properties();
@@ -58,7 +60,13 @@ public class BasePoPageNR {
     public void openBrowser() {
         if (browser.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+
+            ChromeOptions option = new ChromeOptions();
+            option.addArguments("--remote-allow-origins=*");
+
+            driver = new ChromeDriver(option);
+        }else {
+            System.out.println("set chrome as your browser!");
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -235,13 +243,15 @@ public class BasePoPageNR {
     }
     //****************************************************************
 
-    //********************* TAKE SCREENSOTS ************************
+    //********************* TAKE SCREENSHOTS ************************
     public void takeScreenshotNamed(String testName){
         File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH-mm-ss");
         LocalDateTime currentTime = LocalDateTime.now();
-        String dateTimeFormatted = currentTime.format(dateTimeFormatter).split("\\.")[0].replaceAll(":", "-");
-        String screenshotName = SCREENSHOT_PATH + "\\Screenshot-" + testName + "-" + dateTimeFormatted + ".jpeg";
+
+        String dateTimeFormatted = currentTime.format(formatter);
+        String screenshotName = SCREENSHOT_PATH + "\\TestName_" + testName + "_" + dateTimeFormatted + ".jpeg";
 
         File savedScreenshot = new File(screenshotName);
 
@@ -253,21 +263,11 @@ public class BasePoPageNR {
         log.info("Screenshot.." + savedScreenshot);
     }
 
-    public void takeScreenshot(){
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-
-        LocalDateTime localDateTime = LocalDateTime.now();
-        String dateTimeFormatted = localDateTime.format(dateTimeFormatter).split("\\.")[0].replaceAll(":", "-");
-        String screenshotName = SCREENSHOT_PATH + "\\Screenshot-" + dateTimeFormatted+ ".jpeg";
-
-        File savedScreenshot = new File(screenshotName);
-
-        try{
-            FileUtils.copyFile(file, savedScreenshot);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log.info("Screenshot.." + savedScreenshot);
+//Screenshot whole page with current date/time as file name
+    public void takeScreenshotNamed(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH-mm-ss");
+        LocalDateTime dateTime = LocalDateTime.now();
+        takeScreenshotNamed(dateTime.format(formatter));
     }
 
     public void takeElementScreenshot(By locator){
@@ -276,7 +276,7 @@ public class BasePoPageNR {
 
         LocalDateTime localTime = LocalDateTime.now();
         String formattedData = localTime.format(dateTimeFormatter).split("\\.")[0].replaceAll(":", "-");
-        String screenshotName = SCREENSHOT_PATH + "Screendhot-" + element.getText()+ "-" +formattedData + ".jpeg";
+        String screenshotName = SCREENSHOT_PATH + "Screenshot-" + element.getText()+ "-" +formattedData + ".jpeg";
 
         File savedScreenshot = new File(screenshotName);
 
@@ -289,3 +289,22 @@ public class BasePoPageNR {
     }
 
 }
+
+//Old method used for screenshot
+
+//    public void takeScreenshotNamedMethodScoala(String testName){
+//        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//
+//        LocalDateTime currentTime = LocalDateTime.now();
+//        String dateTimeFormatted = currentTime.format(dateTimeFormatter).split("\\.")[0].replaceAll(":", "-");
+//        String screenshotName = SCREENSHOT_PATH + "\\Screenshot-" + testName + "-" + dateTimeFormatted + ".jpeg";
+//
+//        File savedScreenshot = new File(screenshotName);
+//
+//        try{
+//            FileUtils.copyFile(file, savedScreenshot);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        log.info("Screenshot.." + savedScreenshot);
+//    }
