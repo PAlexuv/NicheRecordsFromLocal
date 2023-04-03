@@ -22,6 +22,8 @@ public class BaseTestsNR extends BasePoPageNR {
     protected baseHeaderNR baseHeader;
     protected utilizatorNouPo utilizatorNou;
     protected loginPo login;
+    protected contulMeuPo contulMeu;
+    protected catalogPo catalog;
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() {
@@ -30,6 +32,8 @@ public class BaseTestsNR extends BasePoPageNR {
         baseHeader = new baseHeaderNR();
         utilizatorNou = new utilizatorNouPo();
         login = new loginPo();
+        contulMeu = new contulMeuPo();
+        catalog = new catalogPo();
     }
 
     @AfterSuite(alwaysRun = true)

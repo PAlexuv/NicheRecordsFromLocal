@@ -13,6 +13,7 @@ public class baseHeaderNR extends BasePoPageNR {
     private By contactButton = By.xpath("//div[@class='container']//nav//a[normalize-space()='Contact']");
     private By loginButton = By.xpath("//ul[@class='account']//a[normalize-space()='Login']");
     private By utilizatorNouButton = By.xpath("//ul[@class='account']//a[normalize-space()='Utilizator nou']");
+    private By contulMeuButton = By.xpath("//ul[@class='account']//a[normalize-space()='Contul meu']");
     private By cosulTauButton = By.cssSelector("div[class='cart'] a");
     private By wishlistButton = By.xpath("//span[normalize-space()='Wishlist']");
 
@@ -45,6 +46,11 @@ public class baseHeaderNR extends BasePoPageNR {
         waitForElement(utilizatorNouButton);
         click(utilizatorNouButton);
         return new utilizatorNouPo();
+    }
+
+    public contulMeuPo clickContulMeu(){
+        click(contulMeuButton);
+        return new contulMeuPo();
     }
 
     public cosulTauPo clickCosulTau(){

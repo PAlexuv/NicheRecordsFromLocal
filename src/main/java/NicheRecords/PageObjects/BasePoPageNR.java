@@ -202,14 +202,14 @@ public class BasePoPageNR {
         return driver.findElement(locator).getText();
     }
 
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
-
     public void setText(By locator, String text) {
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
         tab(locator);
+    }
+
+    public String getPageTitle() {
+        return driver.getTitle();
     }
     //...................................................
 

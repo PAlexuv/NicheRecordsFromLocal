@@ -178,4 +178,41 @@ public class DataProviderMethod extends BaseTestsNR {
         return dataArray;
     }
 
+    @DataProvider
+    public Object[] dpValidChangePass() {
+
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject;
+
+        Object obj = null;
+        try {
+            obj = parser.parse(new FileReader("src/main/resources/validChangedPass.json"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        jsonObject = (JSONObject) obj;
+        assert jsonObject != null;
+
+        JSONObject registerInfoData;
+        String parolaCurenta, parolaNoua, confirmareParolaNoua;
+
+        JSONArray registerInfo = (JSONArray) jsonObject.get("validChangePassword");
+        String[] dataArray = new String[registerInfo.size()];
+
+        for (int i = 0; i < registerInfo.size(); i++) {
+            registerInfoData = (JSONObject) registerInfo.get(i);
+
+            parolaCurenta = (String) registerInfoData.get("parolaCurenta");
+            parolaNoua = (String) registerInfoData.get("parolaNoua");
+            confirmareParolaNoua = (String) registerInfoData.get("confirmareParolaNoua");
+
+            dataArray[i] = parolaCurenta + "," + parolaNoua + "," + confirmareParolaNoua ;
+
+        }
+        return dataArray;
+    }
 }
