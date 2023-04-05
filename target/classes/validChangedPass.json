@@ -1,0 +1,10 @@
+{
+  "validChangePassword":
+  [
+    {
+      "parolaCurenta":"Parola",
+      "parolaNoua" : "Parola123",
+      "confirmareParolaNoua" : "Parola123"
+    }
+  ]
+}

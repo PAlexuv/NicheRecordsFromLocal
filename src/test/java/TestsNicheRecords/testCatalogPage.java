@@ -39,6 +39,7 @@ public class testCatalogPage extends BaseTestsNR{
         catalog.deleteCartItems();
         String confirmDeletedItem = catalog.confirmDeleteCartItem();
         assertEquals(confirmDeletedItem, "Cosul tau de cumparaturi este gol.");
+
     }
 
 }
