@@ -211,7 +211,7 @@ public class BasePoPageNR {
     public String getPageTitle() {
         return driver.getTitle();
     }
-    //...................................................
+    //.....................................................
 
     //****************** Window Handles |goBack|goToUrl|newTab|nrOfWindowsOpened|closeBrowser| ****************
     public String getWindowHandle() {
