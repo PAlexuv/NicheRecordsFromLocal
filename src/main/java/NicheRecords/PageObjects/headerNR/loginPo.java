@@ -13,8 +13,15 @@ public class loginPo extends BasePoPageNR {
 
     protected String userText = "alexandrupascal@yahoo.com";
     protected String passText = "Parola123";
+//use up strings
+    public loginPo loginCredentials(){
+        setText(username, userText);
+        setText(password, passText);
+        click(buttonLogin);
+        return this;
+    }
 
-
+//use database
     public loginPo inputValidLogin(String usernameText, String passwordText){
         setText(username, usernameText);
         setText(password, passwordText);
@@ -27,11 +34,6 @@ public class loginPo extends BasePoPageNR {
         return getTextByText(confirmLoggedIn);
     }
 
-    public loginPo loginCredentials(){
-        setText(username, userText);
-        setText(password, passText);
-        click(buttonLogin);
-        return this;
-    }
+
 
 }

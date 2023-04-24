@@ -31,7 +31,7 @@ public class TestListener extends BasePoPageNR implements ITestListener {
         String dateTimeFormatted = currentTime.format(formatter);
         String screenshotName = "\\TestName_" + failedTest + "_" + dateTimeFormatted + ".jpeg"; //here we set the path inside the folder ScreenshotsNR
 
-        String screenshotsDir = "./ScreenshotsNR";// i cannot use SCREENSHOT_PATH as it is blocked fopr access so i must create the string
+        String screenshotsDir = "./ScreenshotsNR";// i cannot use SCREENSHOT_PATH as it is blocked for access so i must create the string
 
         extentReports.attachReporter(reporter);
         extentReports.createTest(failedTest)

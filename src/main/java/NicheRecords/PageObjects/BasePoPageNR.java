@@ -65,6 +65,7 @@ public class BasePoPageNR {
             option.addArguments("--remote-allow-origins=*");
 
             driver = new ChromeDriver(option);
+
         }else {
             System.out.println("set chrome as your browser!");
         }
@@ -87,6 +88,51 @@ public class BasePoPageNR {
         return true;
     }
     //***********************************************************************
+
+    //********************* TAKE SCREENSHOTS ************************
+    public void takeScreenshotNamed(String testName){
+        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH-mm-ss");
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        String dateTimeFormatted = currentTime.format(formatter);
+        String screenshotName = SCREENSHOT_PATH + "\\TestName_" + testName + "_" + dateTimeFormatted + ".jpeg";
+
+        File savedScreenshot = new File(screenshotName);
+
+        try{
+            FileUtils.copyFile(file, savedScreenshot);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        log.info("Screenshot.." + savedScreenshot);
+    }
+
+    //Screenshot whole page with current date/time as file name
+    public void takeScreenshotGeneral(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH-mm-ss");
+        LocalDateTime dateTime = LocalDateTime.now();
+        takeScreenshotNamed(dateTime.format(formatter));
+    }
+
+    public void takeElementScreenshot(By locator){
+        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        WebElement element = driver.findElement(locator);
+
+        LocalDateTime localTime = LocalDateTime.now();
+        String formattedData = localTime.format(dateTimeFormatter).split("\\.")[0].replaceAll(":", "-");
+        String screenshotName = SCREENSHOT_PATH + "Screenshot-" + element.getText()+ "-" +formattedData + ".jpeg";
+
+        File savedScreenshot = new File(screenshotName);
+
+        try {
+            FileUtils.copyFile(file, savedScreenshot);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        log.info("Screenshot.." + savedScreenshot);
+    }
 
 
     //++++++++++++ Actions on page ++++++++++++++++++++++++++++++++++++
@@ -243,50 +289,7 @@ public class BasePoPageNR {
     }
     //****************************************************************
 
-    //********************* TAKE SCREENSHOTS ************************
-    public void takeScreenshotNamed(String testName){
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH-mm-ss");
-        LocalDateTime currentTime = LocalDateTime.now();
-
-        String dateTimeFormatted = currentTime.format(formatter);
-        String screenshotName = SCREENSHOT_PATH + "\\TestName_" + testName + "_" + dateTimeFormatted + ".jpeg";
-
-        File savedScreenshot = new File(screenshotName);
-
-        try{
-            FileUtils.copyFile(file, savedScreenshot);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log.info("Screenshot.." + savedScreenshot);
-    }
-
-//Screenshot whole page with current date/time as file name
-    public void takeScreenshotNamed(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH-mm-ss");
-        LocalDateTime dateTime = LocalDateTime.now();
-        takeScreenshotNamed(dateTime.format(formatter));
-    }
-
-    public void takeElementScreenshot(By locator){
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        WebElement element = driver.findElement(locator);
-
-        LocalDateTime localTime = LocalDateTime.now();
-        String formattedData = localTime.format(dateTimeFormatter).split("\\.")[0].replaceAll(":", "-");
-        String screenshotName = SCREENSHOT_PATH + "Screenshot-" + element.getText()+ "-" +formattedData + ".jpeg";
-
-        File savedScreenshot = new File(screenshotName);
-
-        try {
-            FileUtils.copyFile(file, savedScreenshot);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log.info("Screenshot.." + savedScreenshot);
-    }
 
 }
 

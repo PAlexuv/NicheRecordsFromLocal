@@ -1,10 +1,6 @@
 package Utils;
 
 import NicheRecords.PageObjects.BasePoPageNR;
-import lombok.SneakyThrows;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.annotations.Listeners;
 import org.testng.asserts.IAssert;
 import org.testng.asserts.SoftAssert;
 

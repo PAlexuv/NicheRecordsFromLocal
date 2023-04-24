@@ -15,7 +15,6 @@ import org.testng.annotations.Listeners;
 
 
 @Listeners(TestListener.class)
-
 public class BaseTestsNR extends BasePoPageNR {
 
     //Header

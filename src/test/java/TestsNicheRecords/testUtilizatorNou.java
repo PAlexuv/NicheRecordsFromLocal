@@ -1,10 +1,13 @@
 package TestsNicheRecords;
 
 import Utils.DataProviderMethod;
+import Utils.TestListener;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.junit.Assert.*;
+
 
 public class testUtilizatorNou extends BaseTestsNR {
 

@@ -15,7 +15,7 @@ public class contulMeuPo extends BasePoPageNR {
     private By confirmationMessage = By.cssSelector("div[class='form-group'] center p");
     //************
 
-    public contulMeuPo inputValidChangePass(String parolaCurentaText, String parolaNouaText, String confirmareParolaText){
+    public contulMeuPo changePasswordValid(String parolaCurentaText, String parolaNouaText, String confirmareParolaText){
         waitForElement(contulMeuButton);
         click(contulMeuButton);
         waitForElement(schimbareParolaButton);

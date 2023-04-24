@@ -1,15 +1,15 @@
 package TestsNicheRecords;
 
 import Utils.DataProviderMethod;
+import Utils.TestListener;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.junit.Assert.*;
 
-public class testChangePassword extends BaseTestsNR {
-
+@Listeners(TestListener.class)
+public class testContulMeu extends BaseTestsNR {
 
     @BeforeMethod(description = "go to login")
     public void goToLogin(){
@@ -22,9 +22,9 @@ public class testChangePassword extends BaseTestsNR {
 
         String[] changePassValidData = validData.split(",");
 
-        contulMeu.inputValidChangePass(changePassValidData[0], changePassValidData[1], changePassValidData[2]);
+        contulMeu.changePasswordValid(changePassValidData[0], changePassValidData[1], changePassValidData[2]);
         String confirmationMessage = contulMeu.confirmPassChanged();
-        assertEquals(confirmationMessage, "(*) Parola noua trebuie sa aiba minim 6 caractere.");
+        assertEquals(confirmationMessage, "(*) Parola noua trebuie sa aiba minim 6 caractere");
     }
 
 
