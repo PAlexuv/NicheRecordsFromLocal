@@ -1,5 +1,5 @@
 
-# https://www.https://www.nicherecords.ro//
+# https://www.nicherecords.ro/
 
 Test Automation for https://www.nicherecords.ro/
 
